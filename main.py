@@ -14,7 +14,7 @@ import webbrowser
 import requests
 import datetime
 import re
-from voiceSetup import talk,take_command
+from voice import talk,take_command
 
 
 def hello():
@@ -34,13 +34,13 @@ def run_chatbot():
 
     hello()
     
-    print( "My name is chatbot...")
+    print( "My name is VoiceAid ...")
     print("I can tell you about:")
-    print("Time, City Location, Music Listening , corona , joke ")
+    print("Time , City Location , Joke , Corona , Music Listening ")
     print( "what do you want?")
-    talk( "My name is chatbot...") 
+    talk( "My name is VoiceAid ...") 
     talk( "I can tell you about:")
-    talk( "Time, City Location, Music Listening , joke , corona ")
+    talk( "Time , City Location , Joke , Corona , Music Listening")
     talk( "what do you want?")
     
 
@@ -53,24 +53,25 @@ def run_chatbot():
 
         if 'time' in command:
             time = datetime.datetime.now().strftime('%I:%M %p')
-            talk('Current time is ' + time)
             print('Current time is ' + time)
+            talk('Current time is ' + time)
 
         elif 'joke' in command:
-            talk(pyjokes.get_joke())
             print(pyjokes.get_joke())
+            talk(pyjokes.get_joke())
        
         elif command.lower() in ["corona", "Corona","coronavirus","Coronavirus","tell me about corona", "situation corona", "corona situation", "coronavirus situation", "situation coronavirus", "situation covid", "covid situation", "covid19 situation", "situation covid19", "covid-19 situation", "situation covid-19", "situation sanitaire", "sanitary situantion"]:
             try:
                 dates, cases, deaths = corona()
             except:
+                print("Country not in our database!")
                 talk("Country not in our database!")
                 continue
 
             talk("Here's the cases for the past 3 days:")
             for date, case, death in zip(dates, cases, deaths):
-                talk( date+": \n"+case+", "+death)
                 print(date+": \n"+case+", "+death)
+                talk( date+": \n"+case+", "+death)
 
         elif command.lower() in ["Localisation d'un lieux", "localisation d'un lieux", "localisation d'un lieu","lieux","localisation des lieux","localisation","lieu","city location","location","location","city","City"]:
             talk( 'Choose the city please!')
