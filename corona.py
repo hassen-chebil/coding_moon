@@ -1,22 +1,21 @@
 from bs4 import BeautifulSoup
-from deep_translator import GoogleTranslator
 import requests
 import re
 import json 
 import datetime
-from voiceSetup import talk,take_command
+from voice import talk,take_command
 
 
 
 def corona():
     today = datetime.date.today().strftime('%Y-%m-%d')
-    
+    print("choose the country please")
     talk( "choose the country please")
 
     x=take_command()
 
     link_DataCountry = json.load(open("countriesCodes.json", "r"))
-
+    print( "Getting cases, please wait...")
     talk( "Getting cases, please wait...")
         
 

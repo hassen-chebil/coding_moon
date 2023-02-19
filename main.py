@@ -4,11 +4,8 @@ import pywhatkit
 import datetime
 import wikipedia
 import pyjokes
-from sentence_splitter import SentenceSplitter
-from deep_translator import GoogleTranslator
 from bs4 import BeautifulSoup
 from corona import corona
-from queue import Queue
 from time import sleep
 import webbrowser
 import requests
@@ -20,14 +17,17 @@ from voice import talk,take_command
 def hello():
     hour = int(datetime.datetime.now().hour)
     if hour>= 0 and hour<12:
-        talk("Good morning!")
         print("Good morning!")
+        talk("Good morning!")
+        
     elif hour>= 12 and hour<18:
-        talk( "Good afternoon!") 
         print( "Good afternoon!")
+        talk( "Good afternoon!") 
+        
     else:
-        talk( "Good evening!")
         print( "Good evening!")
+        talk( "Good evening!")
+        
 
 
 def run_chatbot():
